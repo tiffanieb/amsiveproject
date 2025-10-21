@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "amsiveproj": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Users\\tiffa\\source\\repos\\amsiveproj\\testfiles\\testfile00.csv\""
+    }
+  }
+}

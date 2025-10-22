@@ -11,19 +11,27 @@ namespace amsiveproj
         {
             DataTable datatable = new DataTable();
 
-            using (SqlConnection conn = new (connection))
-            {
-                SqlCommand cmd = new(query, conn);
-                
-                // add each parameter to command
-                foreach (KeyValuePair<string, object> kvp in parameters)
+            try
+            { 
+                using (SqlConnection conn = new (connection))
                 {
-                    cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
-                }
+                    SqlCommand cmd = new(query, conn);
+                
+                    // add each parameter to command
+                    foreach (KeyValuePair<string, object> kvp in parameters)
+                    {
+                        cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
+                    }
 
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(datatable);
-                adapter.Dispose();
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    adapter.Fill(datatable);
+                    adapter.Dispose();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Environment.Exit(1);
             }
 
             return datatable;
@@ -33,19 +41,26 @@ namespace amsiveproj
         {
             if (parameters.Count == 0) return;
 
-            using (SqlConnection conn = new(connection))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new(query, conn);
-
-                // add each parameter to command
-                foreach (KeyValuePair<string, object> kvp in parameters)
+                using (SqlConnection conn = new(connection))
                 {
-                    cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
-                }
+                    conn.Open();
+                    SqlCommand cmd = new(query, conn);
 
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                    // add each parameter to command
+                    foreach (KeyValuePair<string, object> kvp in parameters)
+                    {
+                        cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
+                    }
+
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
     }

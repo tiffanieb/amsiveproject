@@ -2,7 +2,7 @@
   "profiles": {
     "amsiveproj": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\Users\\tiffa\\source\\repos\\amsiveproj\\testfiles\\testfile00.csv\""
+      "commandLineArgs": "\"C:\\Users\\tiffa\\source\\repos\\amsiveproj\\testfiles\\testfile100.csv\""
     }
   }
 }

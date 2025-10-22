@@ -1,6 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using System.Data;
-
+﻿using System.Data;
 
 namespace amsiveproj
 {
@@ -21,8 +19,7 @@ namespace amsiveproj
             {
                 writeText += col.ToString() + ",";
             }
-            writeText.TrimEnd(',');
-            writeText += Environment.NewLine;
+            writeText = writeText.TrimEnd(',') + Environment.NewLine;
 
             // format data records to csv
             foreach (DataRow row in datatable.Rows)
@@ -31,8 +28,8 @@ namespace amsiveproj
                 {
                     writeText += row[col].ToString() + ",";
                 }
-                writeText.TrimEnd(',');
-                writeText += Environment.NewLine;
+                //writeText.TrimEnd(',');
+                writeText = writeText.TrimEnd(',') + Environment.NewLine;
             }
 
             // write to file
